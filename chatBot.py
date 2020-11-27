@@ -5,6 +5,7 @@ from datetime import date, timedelta
 from text_helper import *
 from weather_checker import *
 from roll_checker import *
+from joke_checker import *
 
 client = discord.Client()
 configParser = configparser.RawConfigParser()
@@ -17,16 +18,29 @@ def read_token():
 token = read_token()
 
 
+last_triggered = None
 
 @client.event
 async def on_message(message):
+    global last_triggered
     if(message.channel.name=="psi_bot_chat" and message.author.bot==False):
-        print(message.content)
+        message.content = message.content.lower()
+
+
+
         temp = check_for_weather(message, api_key=configParser.get("weather", "api_key"), city=configParser.get("weather", "city"))
         if(temp != ""):
+            last_triggered = temp
             await message.channel.send(temp)
+
         temp = check_for_roll(message)
         if(temp != ""):
+            last_triggered = temp
+            await message.channel.send(temp)
+
+        temp = check_for_joke(message)
+        if(temp != ""):
+            last_triggered = temp
             await message.channel.send(temp)
 
 
