@@ -6,6 +6,7 @@ from text_helper import *
 from weather_checker import *
 from roll_checker import *
 from joke_checker import *
+from again_checker import *
 
 client = discord.Client()
 configParser = configparser.RawConfigParser()
@@ -26,7 +27,10 @@ async def on_message(message):
     if(message.channel.name=="psi_bot_chat" and message.author.bot==False):
         message.content = message.content.lower()
 
-
+        temp = check_for_again(message, last_triggered)
+        if(temp != ""):
+            await message.channel.send(temp)
+            return
 
         temp = check_for_weather(message, api_key=configParser.get("weather", "api_key"), city=configParser.get("weather", "city"))
         if(temp != ""):
