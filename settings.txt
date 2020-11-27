@@ -1,0 +1,5 @@
+[weather]
+city = Krakow
+city_lat = 50.06143
+city_lon = 19.93658
+api_key = bcc74c33052ca11591408fff2e2a0405
