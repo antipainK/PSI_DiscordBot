@@ -1,3 +1,14 @@
+import configparser
+from pyowm import OWM
+from datetime import date, timedelta
+from text_helper import *
+
+configParser = configparser.RawConfigParser()
+configParser.read("settings.txt")
+
+one_call = None
+one_call_acquire_date = None
+
 def check_for_weather(message, api_key, city):
     if(message.content.find("pogoda") != -1 or message.content.find("weather") != -1 or message.content.find("forecast") != -1):
 
