@@ -4,6 +4,7 @@ from datetime import date, timedelta
 
 from text_helper import *
 from weather_checker import *
+from roll_checker import *
 
 client = discord.Client()
 configParser = configparser.RawConfigParser()
@@ -15,6 +16,8 @@ def read_token():
 
 token = read_token()
 
+
+
 @client.event
 async def on_message(message):
     if(message.channel.name=="psi_bot_chat" and message.author.bot==False):
@@ -22,8 +25,9 @@ async def on_message(message):
         temp = check_for_weather(message, api_key=configParser.get("weather", "api_key"), city=configParser.get("weather", "city"))
         if(temp != ""):
             await message.channel.send(temp)
-        if(message.content.find("jak") !=-1):
-            await message.channel.send("kokokokoo")
+        temp = check_for_roll(message)
+        if(temp != ""):
+            await message.channel.send(temp)
 
 
 
