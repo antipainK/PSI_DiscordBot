@@ -17,6 +17,7 @@ from interactions_checker import *
 from time_checker import *
 from timers_checker import *
 from usersOnChannel_checker import *
+from messageCounting_checker import *
 
 
 intents = discord.Intents.default()
@@ -123,6 +124,12 @@ async def on_message(message):
 
         #11
         temp = check_for_usersOnChannel(message)
+        if (temp != ""):
+            last_triggered = temp
+            await message.channel.send(temp)
+
+        #12
+        temp = await check_for_messageCounting(message)
         if (temp != ""):
             last_triggered = temp
             await message.channel.send(temp)
