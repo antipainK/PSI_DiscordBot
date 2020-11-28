@@ -9,6 +9,7 @@ from joke_checker import *
 from again_checker import *
 from cats_checker import *
 from interactions_checker import *
+from time_checker import *
 
 client = discord.Client()
 configParser = configparser.RawConfigParser()
@@ -65,6 +66,11 @@ async def on_message(message):
             await message.channel.send(temp)
 
         temp = check_for_bye(message)
+        if(temp != ""):
+            last_triggered = temp
+            await message.channel.send(temp)
+
+        temp = check_for_time(message)
         if(temp != ""):
             last_triggered = temp
             await message.channel.send(temp)
