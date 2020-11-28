@@ -12,7 +12,7 @@ hello_array = ["Yo, wassup?",
                "Sieeeemanko, witam w mojej kuchni!"]
 
 def check_for_hello(message):
-    if(message.content.startswith("hi") or message.content.startswith("hello") or message.content.startswith("cześć") or message.content.startswith("siema") or message.content.startswith("yo") or message.content.startswith("witaj")):
+    if(message.content.startswith("hi") or message.content.startswith("hello") or message.content.startswith("cześć") or message.content.startswith("siema") or message.content.startswith("yo") or message.content.startswith("witaj") or message.content.startswith("good morning") or message.content.startswith("good evening")):
         if(message.content.find("bot") != -1 or message.content.find("bocie") != -1 or message.content.find("psi") != -1):
             return hello_array[random.randrange(0, len(hello_array))]
     return ""
