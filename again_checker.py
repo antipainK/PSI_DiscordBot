@@ -6,5 +6,7 @@ def check_for_again(message, last_triggered):
             if(last_triggered=="#CAT"):
                 get_new_cat()
                 return "#CAT"
+            if(last_triggered=="#TIMER"):
+                return ""
             return last_triggered
     return ""
