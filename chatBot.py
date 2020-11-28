@@ -8,6 +8,7 @@ from roll_checker import *
 from joke_checker import *
 from again_checker import *
 from cats_checker import *
+from interactions_checker import *
 
 client = discord.Client()
 configParser = configparser.RawConfigParser()
@@ -54,9 +55,19 @@ async def on_message(message):
             await message.channel.send(temp)
 
         temp = check_for_cats(message)
-        if(temp !=""):
+        if(temp != ""):
             await display_image(message, temp)
             last_triggered = "#CAT"
+
+        temp = check_for_hello(message)
+        if(temp != ""):
+            last_triggered = temp
+            await message.channel.send(temp)
+
+        temp = check_for_bye(message)
+        if(temp != ""):
+            last_triggered = temp
+            await message.channel.send(temp)
 
 
 
