@@ -7,8 +7,8 @@ def timer_helper(time_in_seconds, messages_queue):
 
 
 def check_for_timers(message):
-    if(message.content.find("timer") != -1 or message.content.find("stoper") != -1 or message.content.find("minutnik") != -1):
-        if (message.content.find("start") != -1 or message.content.find("włącz") != -1 or message.content.find("uruchom") != -1 or message.content.find("begin") != -1) :
+    if(message.content.find("timer") != -1 or message.content.find("stoper") != -1 or message.content.find("minutnik") != -1 or message.content.find("przypomnij") != -1):
+        if (message.content.find("start") != -1 or message.content.find("włącz") != -1 or message.content.find("uruchom") != -1 or message.content.find("begin") != -1 or message.content.find("przypomnij") != -1):
             words_in_message = message.content.split()
             i = 0
             word = words_in_message[i]

@@ -66,7 +66,7 @@ def check_for_weather(message, api_key, city):
             w = one_call.forecast_daily[(days_missing-1) % 7]
             message_to_send += city + " - " + str(date.today() + timedelta(days=days_missing)) + " (in "+ str(days_missing) + " days)\n"
 
-        elif(message.content.find("wednesday") != -1 or message.content.find("środa") != -1):
+        elif(message.content.find("wednesday") != -1 or message.content.find("środa") != -1 or message.content.find("środę") != -1 or message.content.find("środe") != -1):
             days_missing = (2 - date.today().weekday()) % 7
             if(days_missing == 0):
                 days_missing += 7
@@ -87,21 +87,22 @@ def check_for_weather(message, api_key, city):
             w = one_call.forecast_daily[(days_missing-1) % 7]
             message_to_send += city + " - " + str(date.today() + timedelta(days=days_missing)) + " (in "+ str(days_missing) + " days)\n"
 
-        elif(message.content.find("saturday") != -1 or message.content.find("sobota") != -1):
+        elif(message.content.find("saturday") != -1 or message.content.find("sobota") != -1 or message.content.find("sobotę") != -1 or message.content.find("sobote") != -1):
             days_missing = (5 - date.today().weekday()) % 7
             if(days_missing == 0):
                 days_missing += 7
             w = one_call.forecast_daily[(days_missing-1) % 7]
             message_to_send += city + " - " + str(date.today() + timedelta(days=days_missing)) + " (in "+ str(days_missing) + " days)\n"
 
-        elif(message.content.find("sunday") != -1 or message.content.find("niedziela") != -1):
+        elif(message.content.find("sunday") != -1 or message.content.find("niedziela") != -1 or message.content.find("niedzielę") != -1 or message.content.find("niedziele") != -1):
             days_missing = (6 - date.today().weekday()) % 7
             if(days_missing == 0):
                 days_missing += 7
             w = one_call.forecast_daily[(days_missing-1) % 7]
             message_to_send += city + " - " + str(date.today() + timedelta(days=days_missing)) + " (in "+ str(days_missing) + " days)\n"
         else:
-            return ""
+            message.content += "weather today"  # Jeśli pytanie ogólne, to odpowiedz pogodą dziś
+            return check_for_weather(message, api_key, city)
 
         message_to_send += "Status: " + w.detailed_status.capitalize() + "\n"
         message_to_send += "Temperature: " + " \tMin:" + str(w.temperature("celsius")["min"]) + "°C \tDay:" + str(w.temperature("celsius")["day"]) + "°C \tMax:" + str(w.temperature("celsius")["max"]) + "°C\n"

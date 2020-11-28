@@ -1,11 +1,13 @@
 import random
 
+#TODO more natural message types
+
 random.seed()
 def throw_a_dice():
     return "I'm throwing a dice. I got <" + str(random.randrange(1, 6)) + ">"
 
 def check_for_roll(message):
-    if(message.content == "losuj" or message.content == "roll" or message.content == "random" or message.content == "dice"):
+    if(message.content.find("losuj") != -1 or message.content.find("roll") != -1 or message.content.find("random") != -1 or message.content.find("dice") != -1 or message.content.find("kości") != -1):
         return throw_a_dice()
     if(message.content.startswith("losuj") or message.content.startswith("roll") or message.content.startswith("random")):
         if(len(message.content.split()) <= 2):
