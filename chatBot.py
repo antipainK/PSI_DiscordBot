@@ -16,8 +16,12 @@ from cats_checker import *
 from interactions_checker import *
 from time_checker import *
 from timers_checker import *
+from usersOnChannel_checker import *
 
-client = discord.Client()
+
+intents = discord.Intents.default()
+intents.members = True
+client = discord.Client(intents=intents)
 configParser = configparser.RawConfigParser()
 configParser.read("settings.txt")
 
@@ -118,7 +122,10 @@ async def on_message(message):
             await message.channel.send(temp)
 
         #11
-
+        temp = check_for_usersOnChannel(message)
+        if (temp != ""):
+            last_triggered = temp
+            await message.channel.send(temp)
 
 
 
