@@ -2,7 +2,7 @@ import time
 import threading
 
 def timer_helper(time_in_seconds, messages_queue):
-    messages_queue.put("RRRRYNG RRRRYNG.\nThe selected time (" + str(time_in_seconds) +"s) is over.")
+    messages_queue.put("\t*RRRRYNG* \t*RRRRYNG*\nThe selected time (" + str(time_in_seconds) +"s) is over.")
     return
 
 

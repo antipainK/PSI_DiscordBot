@@ -117,6 +117,8 @@ async def on_message(message):
             last_triggered = temp
             await message.channel.send(temp)
 
+        #11
+
 
 
 
