@@ -7,6 +7,7 @@ from weather_checker import *
 from roll_checker import *
 from joke_checker import *
 from again_checker import *
+from cats_checker import *
 
 client = discord.Client()
 configParser = configparser.RawConfigParser()
@@ -18,6 +19,8 @@ def read_token():
 
 token = read_token()
 
+async def display_image(message, image_path):
+    await message.channel.send(file=discord.File(image_path))
 
 last_triggered = None
 
@@ -29,7 +32,10 @@ async def on_message(message):
 
         temp = check_for_again(message, last_triggered)
         if(temp != ""):
-            await message.channel.send(temp)
+            if(temp=="#CAT"):
+                await display_image(message, "cached_cat_image.png")
+            else:
+                await message.channel.send(temp)
             return
 
         temp = check_for_weather(message, api_key=configParser.get("weather", "api_key"), city=configParser.get("weather", "city"))
@@ -46,6 +52,12 @@ async def on_message(message):
         if(temp != ""):
             last_triggered = temp
             await message.channel.send(temp)
+
+        temp = check_for_cats(message)
+        if(temp !=""):
+            await display_image(message, temp)
+            last_triggered = "#CAT"
+
 
 
 
