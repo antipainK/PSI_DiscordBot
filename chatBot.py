@@ -53,6 +53,7 @@ async def on_message(message):
     global last_message_channel
     last_message_channel = message.channel
     global last_triggered
+    print(message.content)
     if(message.channel.name=="psi_bot_chat" and message.author.bot==False):
         message.content = message.content.lower()
 
