@@ -2,7 +2,11 @@
 # PSI_DiscordBot
 A Discord chat bot written for PSI course at AGH University.<div id="0"></div>
 
-#### This repository is missing "token.txt" - you need to create it and put your bot's token inside.
+###### This repository is missing "token.txt" - you need to create it and put your bot's token inside.
+###### If you want to use OpenWeatherMap API functionality you also need to replace API_KEY in settings.txt file.
+###### "inviteLink.txt" includes an invitiation link - for your own use replace ID in there for your own.
+###### The bot is configured to write only on the "psi_bot_chat" channel on the servers it's invited to.
+
 
 A Discord bot with implemented intents.
 
