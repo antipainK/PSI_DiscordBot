@@ -53,8 +53,9 @@ async def on_message(message):
     global last_message_channel
     last_message_channel = message.channel
     global last_triggered
-    print(message.content)
+
     if(message.channel.name=="psi_bot_chat" and message.author.bot==False):
+        print(message.author.display_name + ": " + message.content)
         message.content = message.content.lower()
 
         #1
@@ -141,5 +142,6 @@ async def on_message(message):
 async def on_ready():
     client.loop.create_task(check_message_queue())
     print(create_line_of_chars("#") + "\tBot is now fully working.\n" + create_line_of_chars("#"))
+    print("\tDisplaying messages from non-bot users: \n")
 
 client.run(token)

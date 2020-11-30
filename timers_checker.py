@@ -1,5 +1,6 @@
 import time
 import threading
+import re
 
 def timer_helper(time_in_seconds, messages_queue):
     messages_queue.put("\t*RRRRYNG* \t*RRRRYNG*\nThe selected time (" + str(time_in_seconds) +"s) is over.")
@@ -12,14 +13,14 @@ def check_for_timers(message):
             words_in_message = message.content.split()
             i = 0
             word = words_in_message[i]
-            while(word.isnumeric() == False and i<len(words_in_message)-1):
+            while(len(re.findall("\d+\.\d+", word)) < 1 and i < len(words_in_message) - 1):
                 i += 1
                 word = words_in_message[i]
 
-            if(i == len(words_in_message)):
+            if(i == len(words_in_message)-1):
                 return ""
             else:   #znalazło czas, teraz szukam, czy sprecyzowano czy minuty, czy sekundy
-                time_number = word
+                time_number = re.findall("\d+\.\d+", word).pop()
                 words_in_message = message.content.split()
                 i = 0
                 found_flag = False
