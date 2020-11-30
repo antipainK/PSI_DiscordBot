@@ -24,7 +24,7 @@ bye_array = ["Oh, too bad. Have a nice day!",
              "I'll never forget about the time we spent together. Au revoir!"]
 
 def check_for_bye(message):
-    if(message.content.startswith("bye") or message.content.startswith("papa") or message.content.startswith("do widzenia") or message.content.startswith("dobranoc")):
+    if(message.content.startswith("bye") or message.content.startswith("papa") or message.content.startswith("do widzenia") or message.content.startswith("dobranoc") or message.content.startswith("goodnight")):
         if(message.content.find("bot") != -1 or message.content.find("bocie") != -1 or message.content.find("psi") != -1):
             return bye_array[random.randrange(0, len(bye_array))]
     return ""
