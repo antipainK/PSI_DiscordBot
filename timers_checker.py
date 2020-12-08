@@ -13,14 +13,18 @@ def check_for_timers(message):
             words_in_message = message.content.split()
             i = 0
             word = words_in_message[i]
-            while(len(re.findall("\d+\.\d+", word)) < 1 and i < len(words_in_message) - 1):
+            while(len(re.findall(r"\d+[\.\d+]?", word)) < 1 and i < len(words_in_message) - 1):
                 i += 1
                 word = words_in_message[i]
 
             if(i == len(words_in_message)-1):
                 return ""
             else:   #znalazło czas, teraz szukam, czy sprecyzowano czy minuty, czy sekundy
-                time_number = re.findall("\d+\.\d+", word).pop()
+                time_number = re.findall(r"\d+[\.\d+]?", word)
+                if len(time_number) > 1:
+                    time_number = float(time_number[0]) + float(time_number[1])/10
+                else:
+                    time_number = time_number[0]
                 words_in_message = message.content.split()
                 i = 0
                 found_flag = False
@@ -33,5 +37,5 @@ def check_for_timers(message):
                 if(found_flag):
                     return str(float(time_number)/60)
                 else:
-                    return time_number
+                    return str(time_number)
     return ""
